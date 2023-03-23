@@ -26,6 +26,7 @@ type t =
   | Liveness
   | LoopHoisting
   | NullsafeDeprecated
+  | OutcomeLogic
   | ParameterNotNullChecked
   | PrintfArgs
   | Pulse
@@ -286,6 +287,14 @@ let config_unsafe checker =
       ; short_documentation=
           "[RESERVED] Reserved for nullsafe typechecker, use `--eradicate` for now."
       ; cli_flags= Some {deprecated= ["-check-nullable"; "-suggest-nullable"]; show_in_help= false}
+      ; enabled_by_default= false
+      ; activates= [] }
+  | OutcomeLogic ->
+      { id= "outcome"
+      ; kind= UserFacing {title= "Outcome Logic"; markdown_body= [%blob "./documentation/checkers/Pulse.md"]}
+      ; support= mk_support_func ~clang:Support ~java:Support ~erlang:ExperimentalSupport ()
+      ; short_documentation= "Memory and lifetime analysis."
+      ; cli_flags= Some {deprecated= []; show_in_help= true}
       ; enabled_by_default= false
       ; activates= [] }
   | ParameterNotNullChecked ->

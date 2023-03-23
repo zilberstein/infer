@@ -33,6 +33,8 @@
    -open
    Nullsafe
    -open
+   Outcomelib
+   -open
    Pulselib
    -open
    Checkers
@@ -67,7 +69,8 @@
   Concurrency
   Labs
   Datalog
-  Textuallib)
+  Textuallib
+  Outcomelib)
  (preprocess
   (pps ppx_compare ppx_fields_conv ppx_yojson_conv)))
 

@@ -1,0 +1,1 @@
+val checker : 'a -> 'b

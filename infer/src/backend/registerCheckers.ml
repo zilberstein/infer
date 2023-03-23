@@ -167,6 +167,20 @@ let all_checkers =
            intraprocedural_with_field_dependency Payloads.Fields.pulse Impurity.checker
          in
          [(impurity, Java); (impurity, Clang)] ) }
+  ; { checker= OutcomeLogic
+    ; callbacks=
+        (let outcome = interprocedural Payloads.Fields.pulse Outcome.checker in
+         [(outcome, Clang); (outcome, Erlang); (outcome, Hack); (outcome, Java); (outcome, CIL)] ) }
+  ; { checker= Datalog
+    ; callbacks=
+        (let datalog = intraprocedural DatalogAnalysis.checker in
+         [(datalog, Java)] ) }
+  ; { checker= Impurity
+    ; callbacks=
+        (let impurity =
+           intraprocedural_with_field_dependency Payloads.Fields.pulse Impurity.checker
+         in
+         [(impurity, Java); (impurity, Clang)] ) }
   ; {checker= PrintfArgs; callbacks= [(intraprocedural PrintfArgs.checker, Java)]}
   ; {checker= Liveness; callbacks= [(intraprocedural Liveness.checker, Clang)]}
   ; { checker= InefficientKeysetIterator
